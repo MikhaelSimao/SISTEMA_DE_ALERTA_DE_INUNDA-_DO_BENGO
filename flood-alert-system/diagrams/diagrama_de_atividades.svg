@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1150" font-family="Arial, sans-serif">
+  <style>
+    .titulo { font-size: 19px; font-weight: bold; fill: #0b2545; }
+    .inicio-fim { fill: #0b2545; }
+    .atividade { fill: #ffffff; stroke: #0d6efd; stroke-width: 1.8; rx: 10; }
+    .atividade-texto { font-size: 11.5px; fill: #0b2545; text-anchor: middle; }
+    .decisao { fill: #fff3cd; stroke: #997404; stroke-width: 1.6; }
+    .decisao-texto { font-size: 10.5px; fill: #664d03; text-anchor: middle; }
+    .seta { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#seta2); }
+    .rotulo { font-size: 10px; fill: #495057; }
+    .raia-titulo { font-size: 11px; font-weight: bold; fill: #6c757d; }
+  </style>
+  <defs>
+    <marker id="seta2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#495057"/></marker>
+  </defs>
+
+  <text x="450" y="26" text-anchor="middle" class="titulo">Diagrama de Atividades - Fluxo de Autenticação, Monitorização e Emissão de Alerta</text>
+
+  <!-- Início -->
+  <circle cx="450" cy="55" r="12" class="inicio-fim"/>
+  <text x="450" y="80" text-anchor="middle" font-size="10" fill="#6c757d">Início</text>
+  <line x1="450" y1="67" x2="450" y2="100" class="seta"/>
+
+  <!-- Aceder ao sistema -->
+  <rect x="360" y="100" width="180" height="42" rx="10" class="atividade"/>
+  <text x="450" y="125" class="atividade-texto">Aceder ao sistema (Chrome)</text>
+  <line x1="450" y1="142" x2="450" y2="170" class="seta"/>
+
+  <!-- Decisão: tem conta? -->
+  <polygon points="450,170 520,205 450,240 380,205" class="decisao"/>
+  <text x="450" y="200" class="decisao-texto">Possui</text>
+  <text x="450" y="212" class="decisao-texto">conta?</text>
+
+  <!-- Não -> Criar conta -->
+  <line x1="380" y1="205" x2="230" y2="205" class="seta"/>
+  <text x="300" y="198" class="rotulo">Não</text>
+  <rect x="130" y="184" width="180" height="42" rx="10" class="atividade"/>
+  <text x="220" y="209" class="atividade-texto">Criar conta / definir pergunta</text>
+  <line x1="220" y1="226" x2="220" y2="260" class="seta"/>
+  <line x1="220" y1="260" x2="450" y2="260" class="seta"/>
+
+  <!-- Sim -> Login -->
+  <line x1="450" y1="240" x2="450" y2="260" class="seta"/>
+  <text x="462" y="252" class="rotulo">Sim</text>
+
+  <!-- Inserir credenciais -->
+  <rect x="360" y="260" width="180" height="42" rx="10" class="atividade"/>
+  <text x="450" y="285" class="atividade-texto">Inserir e-mail e senha</text>
+  <line x1="450" y1="302" x2="450" y2="330" class="seta"/>
+
+  <!-- Decisão: credenciais válidas? -->
+  <polygon points="450,330 530,368 450,406 370,368" class="decisao"/>
+  <text x="450" y="363" class="decisao-texto">Credenciais</text>
+  <text x="450" y="376" class="decisao-texto">válidas?</text>
+
+  <!-- Não -> esqueci senha -->
+  <line x1="370" y1="368" x2="180" y2="368" class="seta"/>
+  <text x="270" y="360" class="rotulo">Não</text>
+  <rect x="80" y="347" width="200" height="42" rx="10" class="atividade"/>
+  <text x="180" y="372" class="atividade-texto">Recuperar senha (pergunta segurança)</text>
+  <line x1="180" y1="389" x2="180" y2="440" class="seta"/>
+  <line x1="180" y1="440" x2="450" y2="440" class="seta"/>
+  <line x1="450" y1="440" x2="450" y2="406" class="seta" marker-end="none"/>
+
+  <!-- Sim -> aceder ao painel conforme perfil -->
+  <line x1="450" y1="406" x2="450" y2="440" class="seta"/>
+  <text x="462" y="418" class="rotulo">Sim</text>
+
+  <rect x="330" y="440" width="240" height="42" rx="10" class="atividade"/>
+  <text x="450" y="465" class="atividade-texto">Carregar módulos conforme o nível de acesso</text>
+  <line x1="450" y1="482" x2="450" y2="510" class="seta"/>
+
+  <!-- Monitorização de sensores -->
+  <rect x="330" y="510" width="240" height="42" rx="10" class="atividade"/>
+  <text x="450" y="535" class="atividade-texto">Monitorizar nível de água (real ou simulação)</text>
+  <line x1="450" y1="552" x2="450" y2="580" class="seta"/>
+
+  <!-- Decisão: nível >= alerta? -->
+  <polygon points="450,580 545,620 450,660 355,620" class="decisao"/>
+  <text x="450" y="614" class="decisao-texto">Nível ≥ limite</text>
+  <text x="450" y="627" class="decisao-texto">de alerta?</text>
+
+  <!-- Não -> volta a monitorizar -->
+  <line x1="355" y1="620" x2="220" y2="620" class="seta"/>
+  <text x="280" y="612" class="rotulo">Não</text>
+  <line x1="220" y1="620" x2="220" y2="531" class="seta"/>
+  <line x1="220" y1="531" x2="330" y2="531" class="seta"/>
+
+  <!-- Sim -> gerar alerta -->
+  <line x1="450" y1="660" x2="450" y2="688" class="seta"/>
+  <text x="462" y="672" class="rotulo">Sim</text>
+  <rect x="330" y="688" width="240" height="42" rx="10" class="atividade"/>
+  <text x="450" y="713" class="atividade-texto">Atualizar estado (Alerta/Crítico) no painel e mapa</text>
+  <line x1="450" y1="730" x2="450" y2="758" class="seta"/>
+
+  <!-- Decisão: offline? -->
+  <polygon points="450,758 545,798 450,838 355,798" class="decisao"/>
+  <text x="450" y="792" class="decisao-texto">Dispositivo</text>
+  <text x="450" y="805" class="decisao-texto">offline?</text>
+
+  <line x1="545" y1="798" x2="660" y2="798" class="seta"/>
+  <text x="600" y="790" class="rotulo">Sim</text>
+  <rect x="660" y="777" width="190" height="42" rx="10" class="atividade"/>
+  <text x="755" y="802" class="atividade-texto">Emitir beep sonoro local</text>
+  <line x1="755" y1="819" x2="755" y2="900" class="seta"/>
+  <line x1="755" y1="900" x2="450" y2="900" class="seta"/>
+
+  <line x1="450" y1="838" x2="450" y2="900" class="seta"/>
+  <text x="462" y="855" class="rotulo">Não</text>
+
+  <!-- Emitir/consultar boletim e relatório -->
+  <rect x="330" y="900" width="240" height="42" rx="10" class="atividade"/>
+  <text x="450" y="925" class="atividade-texto">Emitir boletim/relatório e notificar comunidade</text>
+  <line x1="450" y1="942" x2="450" y2="970" class="seta"/>
+
+  <rect x="330" y="970" width="240" height="42" rx="10" class="atividade"/>
+  <text x="450" y="995" class="atividade-texto">Imprimir relatório (Wi-Fi ou Bluetooth), se necessário</text>
+  <line x1="450" y1="1012" x2="450" y2="1040" class="seta"/>
+
+  <!-- Fim -->
+  <circle cx="450" cy="1060" r="12" fill="none" stroke="#0b2545" stroke-width="3"/>
+  <circle cx="450" cy="1060" r="6" class="inicio-fim"/>
+  <text x="450" y="1085" text-anchor="middle" font-size="10" fill="#6c757d">Fim</text>
+</svg>

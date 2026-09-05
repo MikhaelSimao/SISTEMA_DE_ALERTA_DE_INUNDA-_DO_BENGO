@@ -1,0 +1,151 @@
+/**
+ * =============================================================
+ *  style.css - ESTILOS DO SISTEMA DE ALERTA DE INUNDAÇÃO
+ * =============================================================
+ * Contém:
+ *  - Estilos gerais e variáveis de tema (claro/escuro)
+ *  - Comportamento do menu lateral ESCONDIDO, que só aparece
+ *    quando o cursor do rato passa sobre a área da sidebar
+ *  - Posicionamento fixo e destacado do botão de logout no
+ *    canto superior direito da barra superior (topbar)
+ * =============================================================
+ */
+
+/* ---------- Variáveis de tema ---------- */
+:root {
+  --cor-primaria: #0d6efd;
+  --cor-fundo-sidebar: #0b2545;
+  --largura-sidebar-fechada: 64px;
+  --largura-sidebar-aberta: 250px;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: var(--bs-body-bg);
+  overflow-x: hidden;
+}
+
+/* ---------- Ecrã de autenticação ---------- */
+#tela-autenticacao {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0b2545 0%, #0d6efd 100%);
+  padding: 20px;
+}
+.auth-card {
+  max-width: 440px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.auth-cabecalho {
+  background: var(--cor-fundo-sidebar);
+  color: #fff;
+  padding: 24px;
+  text-align: center;
+}
+.auth-cabecalho img.logo-app { width: 56px; margin-bottom: 8px; }
+
+/* ---------- Layout geral da aplicação ---------- */
+#tela-aplicacao {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------- MENU LATERAL ESCONDIDO (aparece ao passar o cursor) ---------- */
+#sidebar {
+  width: var(--largura-sidebar-fechada);
+  background: var(--cor-fundo-sidebar);
+  color: #fff;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  transition: width 0.25s ease;
+  overflow: hidden;
+  z-index: 1030;
+  flex-shrink: 0;
+}
+/* Ao passar o cursor (hover) sobre a sidebar, ela expande-se revelando os textos do menu */
+#sidebar:hover {
+  width: var(--largura-sidebar-aberta);
+}
+#sidebar .sidebar-texto {
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease 0.05s;
+}
+#sidebar:hover .sidebar-texto {
+  opacity: 1;
+}
+#sidebar-badge-role {
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+#sidebar:hover #sidebar-badge-role { opacity: 1; }
+
+.sidebar-link {
+  color: rgba(255,255,255,0.75) !important;
+  padding: 12px 20px;
+  border-left: 3px solid transparent;
+  font-size: 0.95rem;
+}
+.sidebar-link i { font-size: 1.2rem; width: 24px; text-align: center; }
+.sidebar-link:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff !important;
+}
+.sidebar-link.active {
+  background: rgba(13,110,253,0.25);
+  border-left-color: var(--cor-primaria);
+  color: #fff !important;
+}
+
+/* ---------- Barra superior (topbar) e BOTÃO DE LOGOUT REPOSICIONADO ---------- */
+#topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  background: var(--bs-body-bg);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  gap: 14px;
+}
+
+/* Conforme solicitado, o botão "Terminar Sessão" foi movido para um
+   canto isolado e visualmente destacado (extremo direito da topbar,
+   separado dos restantes ícones por uma margem e cor de contraste),
+   evitando cliques acidentais junto de outras ações. */
+#btn-logout {
+  margin-left: 18px;
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-weight: 600;
+}
+
+#conteudo-principal {
+  padding: 24px;
+  flex-grow: 1;
+  min-height: calc(100vh - 64px);
+}
+
+/* ---------- Componentes diversos ---------- */
+.avatar-tabela { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.legenda-cor { display:inline-block; width:14px; height:14px; border-radius:3px; margin-right:4px; vertical-align:middle; }
+.card-sensor { border-left: 4px solid var(--cor-primaria); }
+
+/* ---------- Ajustes de tema escuro ---------- */
+[data-bs-theme="dark"] #topbar { background: #12203a; border-color: rgba(255,255,255,0.08); }
+[data-bs-theme="dark"] #tela-aplicacao { background: #0e1626; }
+
+/* ---------- Responsivo (dispositivos móveis) ---------- */
+@media (max-width: 768px) {
+  #sidebar { position: fixed; height: 100vh; }
+  #conteudo-principal { margin-left: var(--largura-sidebar-fechada); }
+}

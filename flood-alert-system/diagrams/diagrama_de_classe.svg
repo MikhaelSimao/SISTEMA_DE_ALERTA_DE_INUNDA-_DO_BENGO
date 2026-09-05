@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 800" font-family="Arial, sans-serif">
+  <style>
+    .titulo { font-size: 20px; font-weight: bold; fill: #0b2545; }
+    .classe-caixa { fill: #ffffff; stroke: #0d6efd; stroke-width: 1.8; }
+    .classe-titulo { fill: #eaf2ff; stroke: #0d6efd; stroke-width: 1.8; }
+    .classe-nome { font-size: 13px; font-weight: bold; fill: #0b2545; text-anchor: middle; }
+    .atributo { font-size: 10.5px; fill: #222; }
+    .metodo { font-size: 10.5px; fill: #0b2545; font-style: italic; }
+    .linha-sep { stroke: #0d6efd; stroke-width: 1; }
+    .rel { stroke: #495057; stroke-width: 1.4; fill: none; }
+    .rel-texto { font-size: 10px; fill: #495057; }
+  </style>
+
+  <text x="575" y="28" text-anchor="middle" class="titulo">Diagrama de Classes - Sistema de Alerta de Inundação (Bairro Mubungo)</text>
+
+  <!-- ===================== CLASSE Usuario ===================== -->
+  <g>
+    <rect x="40" y="60" width="220" height="150" class="classe-caixa"/>
+    <rect x="40" y="60" width="220" height="26" class="classe-titulo"/>
+    <text x="150" y="78" class="classe-nome">Usuario</text>
+    <line x1="40" y1="86" x2="260" y2="86" class="linha-sep"/>
+    <text x="48" y="100" class="atributo">- id: String</text>
+    <text x="48" y="113" class="atributo">- nome: String</text>
+    <text x="48" y="126" class="atributo">- email: String</text>
+    <text x="48" y="139" class="atributo">- senha: String (hash)</text>
+    <text x="48" y="152" class="atributo">- role: enum {admin,tecnico,</text>
+    <text x="60" y="163" class="atributo">voluntario,usuario}</text>
+    <text x="48" y="176" class="atributo">- foto: String (base64)</text>
+    <text x="48" y="189" class="atributo">- ativo: Boolean</text>
+    <line x1="40" y1="196" x2="260" y2="196" class="linha-sep"/>
+    <text x="48" y="208" class="metodo">+ autenticar(), registar()</text>
+  </g>
+
+  <!-- ===================== CLASSE Sensor ===================== -->
+  <g>
+    <rect x="330" y="60" width="230" height="175" class="classe-caixa"/>
+    <rect x="330" y="60" width="230" height="26" class="classe-titulo"/>
+    <text x="445" y="78" class="classe-nome">Sensor</text>
+    <line x1="330" y1="86" x2="560" y2="86" class="linha-sep"/>
+    <text x="338" y="100" class="atributo">- id: String</text>
+    <text x="338" y="113" class="atributo">- nome, localizacao: String</text>
+    <text x="338" y="126" class="atributo">- dispositivo: enum {Arduino Uno, ESP32}</text>
+    <text x="338" y="139" class="atributo">- latitude, longitude: Number</text>
+    <text x="338" y="152" class="atributo">- nivelAtual: Number</text>
+    <text x="338" y="165" class="atributo">- limiteAlerta, limiteCritico: Number</text>
+    <text x="338" y="178" class="atributo">- modo: enum {real, simulacao}</text>
+    <text x="338" y="191" class="atributo">- status: String</text>
+    <line x1="330" y1="198" x2="560" y2="198" class="linha-sep"/>
+    <text x="338" y="210" class="metodo">+ conectarReal(), simular()</text>
+    <text x="338" y="222" class="metodo">+ classificarEstado()</text>
+  </g>
+
+  <!-- ===================== CLASSE Leitura ===================== -->
+  <g>
+    <rect x="630" y="60" width="200" height="120" class="classe-caixa"/>
+    <rect x="630" y="60" width="200" height="26" class="classe-titulo"/>
+    <text x="730" y="78" class="classe-nome">Leitura</text>
+    <line x1="630" y1="86" x2="830" y2="86" class="linha-sep"/>
+    <text x="638" y="100" class="atributo">- id: String</text>
+    <text x="638" y="113" class="atributo">- sensorId: String</text>
+    <text x="638" y="126" class="atributo">- nivel: Number</text>
+    <text x="638" y="139" class="atributo">- origem: enum {real, simulacao}</text>
+    <text x="638" y="152" class="atributo">- data: DateTime</text>
+    <line x1="630" y1="159" x2="830" y2="159" class="linha-sep"/>
+    <text x="638" y="171" class="metodo">+ registar()</text>
+  </g>
+
+  <!-- ===================== CLASSE Boletim ===================== -->
+  <g>
+    <rect x="40" y="270" width="220" height="150" class="classe-caixa"/>
+    <rect x="40" y="270" width="220" height="26" class="classe-titulo"/>
+    <text x="150" y="288" class="classe-nome">Boletim</text>
+    <line x1="40" y1="296" x2="260" y2="296" class="linha-sep"/>
+    <text x="48" y="310" class="atributo">- id: String</text>
+    <text x="48" y="323" class="atributo">- titulo: String</text>
+    <text x="48" y="336" class="atributo">- conteudo: String</text>
+    <text x="48" y="349" class="atributo">- categoria: String</text>
+    <text x="48" y="362" class="atributo">- autor: String</text>
+    <text x="48" y="375" class="atributo">- data: DateTime</text>
+    <line x1="40" y1="382" x2="260" y2="382" class="linha-sep"/>
+    <text x="48" y="394" class="metodo">+ criar(), pesquisar()</text>
+    <text x="48" y="406" class="metodo">+ listar()</text>
+  </g>
+
+  <!-- ===================== CLASSE Relatorio ===================== -->
+  <g>
+    <rect x="330" y="290" width="230" height="175" class="classe-caixa"/>
+    <rect x="330" y="290" width="230" height="26" class="classe-titulo"/>
+    <text x="445" y="308" class="classe-nome">Relatorio</text>
+    <line x1="330" y1="316" x2="560" y2="316" class="linha-sep"/>
+    <text x="338" y="330" class="atributo">- id: String</text>
+    <text x="338" y="343" class="atributo">- titulo, tipo: String</text>
+    <text x="338" y="356" class="atributo">- conteudo: String</text>
+    <text x="338" y="369" class="atributo">- localizacao: String</text>
+    <text x="338" y="382" class="atributo">- autor: String</text>
+    <text x="338" y="395" class="atributo">- status: enum {Aberto, Em Análise,</text>
+    <text x="350" y="406" class="atributo">Resolvido}</text>
+    <text x="338" y="419" class="atributo">- data: DateTime</text>
+    <line x1="330" y1="426" x2="560" y2="426" class="linha-sep"/>
+    <text x="338" y="438" class="metodo">+ emitir(), pesquisar()</text>
+    <text x="338" y="450" class="metodo">+ imprimirWifi(), imprimirBluetooth()</text>
+  </g>
+
+  <!-- ===================== CLASSE Mensagem ===================== -->
+  <g>
+    <rect x="630" y="270" width="200" height="140" class="classe-caixa"/>
+    <rect x="630" y="270" width="200" height="26" class="classe-titulo"/>
+    <text x="730" y="288" class="classe-nome">Mensagem</text>
+    <line x1="630" y1="296" x2="830" y2="296" class="linha-sep"/>
+    <text x="638" y="310" class="atributo">- id: String</text>
+    <text x="638" y="323" class="atributo">- autor: String</text>
+    <text x="638" y="336" class="atributo">- assunto, texto: String</text>
+    <text x="638" y="349" class="atributo">- status: enum {registada, enviada}</text>
+    <text x="638" y="362" class="atributo">- data: DateTime</text>
+    <line x1="630" y1="369" x2="830" y2="369" class="linha-sep"/>
+    <text x="638" y="381" class="metodo">+ registar(), enviar()</text>
+  </g>
+
+  <!-- ===================== CLASSE Sistema (Fachada/Backend) ===================== -->
+  <g>
+    <rect x="880" y="150" width="230" height="150" class="classe-caixa"/>
+    <rect x="880" y="150" width="230" height="26" class="classe-titulo"/>
+    <text x="995" y="168" class="classe-nome">SistemaBackend (FloodDB)</text>
+    <line x1="880" y1="176" x2="1110" y2="176" class="linha-sep"/>
+    <text x="888" y="190" class="atributo">- tabelas: LocalStorage</text>
+    <line x1="880" y1="197" x2="1110" y2="197" class="linha-sep"/>
+    <text x="888" y="209" class="metodo">+ read(), write()</text>
+    <text x="888" y="221" class="metodo">+ seed(), hash()</text>
+    <text x="888" y="233" class="metodo">+ ok(), fail()</text>
+    <text x="888" y="248" font-size="9.5" fill="#6c757d">(camada substituível por API</text>
+    <text x="888" y="260" font-size="9.5" fill="#6c757d">REST real em Node.js/SQL)</text>
+  </g>
+
+  <!-- ===================== RELACIONAMENTOS ===================== -->
+  <!-- Usuario -> Boletim (autor) -->
+  <path d="M 150 210 L 150 270" class="rel"/><text x="158" y="245" class="rel-texto">1..* cria</text>
+
+  <!-- Usuario -> Relatorio -->
+  <path d="M 260 190 L 330 320" class="rel"/><text x="270" y="240" class="rel-texto">1..* emite</text>
+
+  <!-- Usuario -> Mensagem -->
+  <path d="M 260 140 L 630 320" class="rel"/><text x="420" y="220" class="rel-texto">1..* regista</text>
+
+  <!-- Sensor -> Leitura -->
+  <path d="M 560 110 L 630 110" class="rel"/><text x="575" y="103" class="rel-texto">1 -&gt; 0..*</text>
+
+  <!-- Sensor -> SistemaBackend -->
+  <path d="M 560 150 L 880 220" class="rel"/><text x="700" y="175" class="rel-texto">envia leituras</text>
+
+  <!-- Todas as classes -> SistemaBackend (persistência) -->
+  <path d="M 830 130 L 880 200" class="rel" stroke-dasharray="4,3"/>
+  <path d="M 560 350 L 880 260" class="rel" stroke-dasharray="4,3"/>
+  <path d="M 260 380 L 880 250" class="rel" stroke-dasharray="4,3"/>
+  <text x="700" y="290" class="rel-texto">&lt;&lt;persiste em&gt;&gt;</text>
+
+  <text x="575" y="500" text-anchor="middle" font-size="11" fill="#6c757d">Legenda: caixas com traço contínuo = associação direta; traço tracejado = persistência/dependência com a camada de backend.</text>
+</svg>
